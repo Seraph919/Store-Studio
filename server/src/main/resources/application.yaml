@@ -1,0 +1,74 @@
+# First-install protection: SETUP_TOKEN is a secret chosen by the deployer.
+app:
+  setup:
+    token: ${SETUP_TOKEN:}
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 31MB
+  threads:
+    virtual:
+      enabled: true
+  data:
+    redis:
+      host: ${REDIS_HOST:redis}
+      port: ${REDIS_PORT:6379}
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000
+      cache-null-values: false
+
+  application:
+    name: store
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: validate
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    url: jdbc:postgresql://postgres:5432/store_db
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  flyway:
+    enabled: false
+  jwt:
+    secret: ${JWT_SECRET}
+
+  mail:
+    host: ${SPRING_MAIL_HOST:smtp.gmail.com}
+    port: ${SPRING_MAIL_PORT:587}
+    username: ${ADMIN_MAIL}
+    password: ${APP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger/index.html
+
+
+cloudflare:
+  r2:
+    account-id: ${CF_ACC_ID:}
+    access-key: ${CF_ACC_KEY:}
+    secret-key: ${CF_SEC_ID:}
+    bucket: ${CF_BUCKET:}
+    public-domain: ${PUBLIC_DOMAIN:}
+
+
+

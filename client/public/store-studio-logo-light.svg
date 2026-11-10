@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Store Studio logo">
+  <rect width="256" height="256" fill="none"/>
+  <path d="M68 86h120l12 104H56L68 86Z" fill="none" stroke="#111827" stroke-width="16" stroke-linejoin="round"/>
+  <path d="M96 86V68c0-28 64-28 64 0v18" fill="none" stroke="#F4B400" stroke-width="16" stroke-linecap="round"/>
+  <path d="M128 114v60M98 144h60" stroke="#111827" stroke-width="12" stroke-linecap="round"/>
+  <path d="M128 114c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40Z" fill="none" stroke="#111827" stroke-width="12" stroke-dasharray="34 16" stroke-linecap="round"/>
+  <circle cx="128" cy="114" r="12" fill="#F4B400"/>
+  <circle cx="98" cy="144" r="12" fill="#F4B400"/>
+  <circle cx="158" cy="144" r="12" fill="#F4B400"/>
+  <circle cx="128" cy="174" r="12" fill="#F4B400"/>
+  <circle cx="128" cy="144" r="14" fill="#F4B400"/>
+</svg>

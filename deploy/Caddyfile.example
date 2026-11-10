@@ -1,0 +1,7 @@
+# Example HTTPS reverse proxy. Set STORE_DOMAIN to your real DNS name before deployment.
+# Forward the public store to the Compose frontend, which proxies /api to Spring Boot.
+# This Caddyfile assumes Caddy runs on the same Docker network as the frontend.
+{$STORE_DOMAIN} {
+    encode zstd gzip
+    reverse_proxy front-end:5173
+}

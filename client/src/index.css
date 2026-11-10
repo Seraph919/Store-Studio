@@ -1,0 +1,286 @@
+@import "tailwindcss";
+
+/* Metric overrides for font fallback to eliminate layout shifts (CLS) */
+@font-face {
+  font-family: 'Cormorant Fallback';
+  src: local('Georgia'), local('Times New Roman');
+  ascent-override: 86%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+  size-adjust: 90%;
+}
+
+@font-face {
+  font-family: 'Montserrat Fallback';
+  src: local('Arial'), local('Helvetica');
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 98%;
+}
+
+:root,
+[data-theme="light"] {
+  /* Option 3: Luxury & Premium Boutique Tokens - Light */
+  --color-primary: #1c1917;         /* Deep Onyx */
+  --color-secondary: #44403c;       /* Warm Stone */
+  --color-cta: #ca8a04;             /* Burnished Gold */
+  --color-cta-hover: #a16207;       /* Rich Deep Gold */
+  --color-cta-text: #0c0a09;        /* High-contrast text on gold */
+  --color-badge: #d97706;           /* VIP / Amber */
+
+  --bg-page: #fafaf9;              /* Silk Alabaster */
+  --bg-surface: #ffffff;           /* Crisp Porcelain */
+  --bg-subtle: #f5f5f4;            /* Soft Greige */
+
+  --text-heading: #0c0a09;         /* Obsidian Charcoal */
+  --text-body: #292524;            /* Rich Warm Charcoal */
+  --text-muted: #78716c;           /* Warm Stone */
+
+  --border-subtle: #e7e5e4;        /* Warm Greige Hairline */
+  --border-focus: #ca8a04;         /* Gold Focus Ring */
+
+  /* Legacy & Starter Aliases */
+  --text: var(--text-body);
+  --text-h: var(--text-heading);
+  --bg: var(--bg-page);
+  --bg-body: var(--bg-page);
+  --border: var(--border-subtle);
+  --code-bg: var(--bg-subtle);
+  --accent: var(--color-cta);
+  --accent-bg: rgba(202, 138, 4, 0.08);
+  --accent-border: rgba(202, 138, 4, 0.4);
+  --social-bg: rgba(245, 245, 244, 0.8);
+  --shadow:
+    rgba(28, 25, 23, 0.06) 0 10px 20px -4px, rgba(28, 25, 23, 0.04) 0 4px 6px -2px;
+  --hero-fade-mid: rgba(255, 255, 255, 0.4);
+  --hero-fade-end: rgba(255, 255, 255, 0.85);
+
+  /* Typography */
+  --sans: 'Montserrat', 'Montserrat Fallback', system-ui, -apple-system, sans-serif;
+  --heading: 'Cormorant Garamond', 'Cormorant Fallback', Georgia, serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 17px/160% var(--sans);
+  letter-spacing: 0.2px;
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 15px;
+  }
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-primary: #f5f5f4;
+  --color-secondary: #d6d3d1;
+  --color-cta: #eab308;
+  --color-cta-hover: #ca8a04;
+  --color-cta-text: #0c0a09;
+  --color-badge: #f59e0b;
+
+  --bg-page: #0c0a09;
+  --bg-surface: #1c1917;
+  --bg-subtle: #292524;
+
+  --text-heading: #fafaf9;
+  --text-body: #d6d3d1;
+  --text-muted: #a8a29e;
+
+  --border-subtle: #292524;
+  --border-focus: #eab308;
+
+  --text: var(--text-body);
+  --text-h: var(--text-heading);
+  --bg: var(--bg-page);
+  --border: var(--border-subtle);
+  --code-bg: var(--bg-subtle);
+  --accent: var(--color-cta);
+  --accent-bg: rgba(234, 179, 8, 0.12);
+  --accent-border: rgba(234, 179, 8, 0.45);
+  --social-bg: rgba(41, 37, 36, 0.6);
+  --shadow:
+    rgba(0, 0, 0, 0.5) 0 10px 25px -4px, rgba(0, 0, 0, 0.3) 0 4px 8px -2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-primary: #f5f5f4;
+    --color-secondary: #d6d3d1;
+    --color-cta: #eab308;
+    --color-cta-hover: #ca8a04;
+    --color-cta-text: #0c0a09;
+    --color-badge: #f59e0b;
+
+    --bg-page: #0c0a09;
+    --bg-surface: #1c1917;
+    --bg-subtle: #292524;
+
+    --text-heading: #fafaf9;
+    --text-body: #d6d3d1;
+    --text-muted: #a8a29e;
+
+    --border-subtle: #292524;
+    --border-focus: #eab308;
+
+    --text: var(--text-body);
+    --text-h: var(--text-heading);
+    --bg: var(--bg-page);
+    --bg-body: var(--bg-page);
+    --border: var(--border-subtle);
+    --code-bg: var(--bg-subtle);
+    --accent: var(--color-cta);
+    --accent-bg: rgba(234, 179, 8, 0.12);
+    --accent-border: rgba(234, 179, 8, 0.45);
+    --social-bg: rgba(41, 37, 36, 0.6);
+    --shadow:
+      rgba(0, 0, 0, 0.5) 0 10px 25px -4px, rgba(0, 0, 0, 0.3) 0 4px 8px -2px;
+    --hero-fade-mid: rgba(28, 25, 23, 0.4);
+    --hero-fade-end: rgba(28, 25, 23, 0.85);
+  }
+}
+
+/* =========================================================================
+   PALETTE 2: ROYAL SAPPHIRE & GOLD
+   Exact Tokens: #0C1F3C #1F3A5F #E2B84A #FAF6ED #111827
+   ========================================================================= */
+
+/* Sapphire - Dark Mode (Default for sapphire) */
+[data-palette="sapphire"][data-theme="dark"],
+[data-palette="sapphire"]:not([data-theme="light"]) {
+  color-scheme: dark;
+  --color-primary: #FAF6ED;         /* Antique Ivory */
+  --color-secondary: #93A5BE;       /* Steel Sapphire Muted */
+  --color-cta: #E2B84A;             /* Warm Imperial Gold */
+  --color-cta-hover: #cfa438;       /* Deep Gold */
+  --color-cta-text: #111827;        /* Deep Obsidian Charcoal */
+  --color-badge: #E2B84A;           /* Imperial Gold */
+
+  --bg-page: #0C1F3C;              /* Deep Midnight Navy */
+  --bg-surface: #111827;           /* Deep Obsidian Charcoal */
+  --bg-subtle: #1F3A5F;            /* Steel Sapphire Blue */
+  --bg-body: #0C1F3C;
+
+  --text-heading: #FAF6ED;         /* Antique Ivory */
+  --text-body: #FAF6ED;            /* Antique Ivory text */
+  --text-muted: #93A5BE;           /* Steel Sapphire Muted */
+
+  --border-subtle: #1F3A5F;        /* Steel Sapphire Hairline */
+  --border-focus: #E2B84A;         /* Imperial Gold */
+
+  --text: var(--text-body);
+  --text-h: var(--text-heading);
+  --bg: var(--bg-page);
+  --border: var(--border-subtle);
+  --code-bg: var(--bg-subtle);
+  --accent: var(--color-cta);
+  --accent-bg: rgba(226, 184, 74, 0.14);
+  --accent-border: rgba(226, 184, 74, 0.45);
+  --social-bg: rgba(31, 58, 95, 0.6);
+  --shadow:
+    rgba(12, 31, 60, 0.6) 0 10px 25px -4px, rgba(0, 0, 0, 0.45) 0 4px 8px -2px;
+
+  --hero-fade-mid: rgba(17, 24, 39, 0.45);
+  --hero-fade-end: rgba(17, 24, 39, 0.9);
+}
+
+/* Sapphire - Light Mode */
+[data-palette="sapphire"][data-theme="light"] {
+  color-scheme: light;
+  --color-primary: #0C1F3C;         /* Deep Midnight Navy */
+  --color-secondary: #1F3A5F;       /* Steel Sapphire Blue */
+  --color-cta: #E2B84A;             /* Warm Imperial Gold */
+  --color-cta-hover: #cfa438;       /* Deep Gold */
+  --color-cta-text: #111827;        /* Obsidian Charcoal */
+  --color-badge: #0C1F3C;           /* Deep Midnight Navy */
+
+  --bg-page: #FAF6ED;              /* Antique Ivory Canvas */
+  --bg-surface: #FAF6ED;           /* Antique Ivory (matches category strip) */
+  --bg-subtle: #edf2f7;            /* Soft Icy Sapphire */
+  --bg-body: #FAF6ED;
+
+  --text-heading: #0C1F3C;         /* Deep Midnight Navy */
+  --text-body: #111827;            /* Deep Obsidian Charcoal */
+  --text-muted: #1F3A5F;           /* Steel Sapphire Blue */
+
+  --border-subtle: rgba(31, 58, 95, 0.22);
+  --border-focus: #0C1F3C;
+
+  --text: var(--text-body);
+  --text-h: var(--text-heading);
+  --bg: var(--bg-page);
+  --border: var(--border-subtle);
+  --code-bg: var(--bg-subtle);
+  --accent: var(--color-cta);
+  --accent-bg: rgba(226, 184, 74, 0.12);
+  --accent-border: rgba(226, 184, 74, 0.45);
+  --social-bg: rgba(31, 58, 95, 0.15);
+  --shadow:
+    rgba(12, 31, 60, 0.10) 0 10px 20px -4px, rgba(12, 31, 60, 0.05) 0 4px 6px -2px;
+
+  --hero-fade-mid: rgba(250, 246, 237, 0.5);
+  --hero-fade-end: rgba(250, 246, 237, 0.95);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}

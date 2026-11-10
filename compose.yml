@@ -1,0 +1,91 @@
+services:
+  backend:
+    container_name: spring-backend
+    build:
+      context: ./server
+    # Accessed through the frontend proxy; never publish the admin API directly.
+    expose:
+    -  "8080"
+    networks:
+    -  private
+    env_file:
+    - .env
+    restart: unless-stopped
+    depends_on:
+      flyway:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    networks:
+      - private
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    env_file:
+      - .env
+  
+
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    networks:
+      - private
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d store_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  flyway:
+    image: flyway/flyway:latest
+    container_name: flyway
+    command: -connectRetries=60 migrate
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./server/src/main/resources/db/migration:/flyway/sql
+    env_file:
+      - .env
+    networks:
+      - private
+
+  front-end:
+    container_name: react-frontend
+    build:
+      context: ./client
+    env_file:
+      - .env
+    environment:
+      - VITE_BACKEND_URL=http://spring-backend:8080
+    volumes:
+      - ./client/src:/app/src
+      - ./client/public:/app/public
+      - ./client/index.html:/app/index.html
+      - ./client/vite.config.ts:/app/vite.config.ts
+    command: npm run preview -- --host 0.0.0.0 --port 5173
+    ports:
+      - "5173:5173"
+    networks:
+      - private
+    restart: unless-stopped
+    depends_on:
+    - backend
+
+
+networks:
+  private:
+volumes:
+  postgres_data:
